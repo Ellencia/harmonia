@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const NAV_ITEMS = [
@@ -13,159 +13,153 @@ const NAV_ITEMS = [
   {
     label: '공간',
     dropdown: [
-      { label: '공간 안내',   href: '/spaces' },
-      { label: '자료실',      href: '/community/archive' },
-      { label: '자유게시판',  href: '/community/board' },
-      { label: 'Q&A',         href: '/community/qna' },
+      { label: '공간 안내',  href: '/spaces' },
+      { label: '자료실',     href: '/community/archive' },
+      { label: '자유게시판', href: '/community/board' },
+      { label: 'Q&A',        href: '/community/qna' },
     ],
-  },
-  {
-    label: '연습실 예약',
-    href: '/reservation',
-    highlight: true,
   },
 ];
 
-function DropdownItem({ item, onClose }) {
-  const [hovered, setHovered] = useState(false);
-  const timeoutRef = useRef(null);
+const RIGHT_ITEMS = [
+  { label: '연습실 예약', href: '/reservation', highlight: true },
+];
 
-  const handleMouseEnter = () => {
-    clearTimeout(timeoutRef.current);
-    setHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => setHovered(false), 120);
-  };
-
-  if (item.dropdown) {
-    return (
-      <li
-        className={`nav-item has-dropdown ${hovered ? 'dropdown-open' : ''}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <span className="nav-link nav-dropdown-trigger">
-          {item.label}
-          <svg className="dropdown-arrow" width="10" height="6" viewBox="0 0 10 6">
-            <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </span>
-        <ul className="dropdown-menu">
-          {item.dropdown.map((sub) => (
-            <li key={sub.label}>
-              <Link to={sub.href} className="dropdown-link" onClick={onClose}>
-                {sub.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </li>
-    );
-  }
-
-  return (
-    <li className="nav-item">
-      <Link
-        to={item.href}
-        className={`nav-link ${item.highlight ? 'nav-highlight' : ''}`}
-        onClick={onClose}
-      >
-        {item.highlight && '🎸 '}{item.label}
-      </Link>
-    </li>
-  );
-}
+const dropdownItems = NAV_ITEMS.filter((item) => item.dropdown);
 
 function Navbar() {
+  const [activeMenu, setActiveMenu] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState(null);
 
-  const close = () => {
+  const megaOpen = activeMenu !== null;
+
+  const closeAll = () => {
+    setActiveMenu(null);
     setMobileOpen(false);
     setMobileExpanded(null);
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-inner">
-        <Link to="/" className="navbar-logo" onClick={close}>
-          🎵 Harmonia
-        </Link>
+    <>
+      {/* 메가 메뉴 오버레이 */}
+      {megaOpen && (
+        <div className="mega-overlay" onMouseEnter={() => setActiveMenu(null)} />
+      )}
 
-        {/* 데스크톱 중앙 메뉴 (소개, 공간) */}
-        <ul className="desktop-menu desktop-menu-center">
-          {NAV_ITEMS.filter((item) => !item.highlight).map((item) => (
-            <DropdownItem key={item.label} item={item} onClose={close} />
-          ))}
-        </ul>
+      <nav className="navbar" onMouseLeave={() => setActiveMenu(null)}>
+        <div className="navbar-inner">
 
-        {/* 데스크톱 우측 메뉴 (연습실 예약, 멤버 신청) */}
-        <ul className="desktop-menu desktop-menu-right">
-          {NAV_ITEMS.filter((item) => item.highlight).map((item) => (
-            <DropdownItem key={item.label} item={item} onClose={close} />
-          ))}
-          <li>
-            <Link to="/#join" className="navbar-cta" onClick={close}>
-              멤버 신청
-            </Link>
-          </li>
-        </ul>
+          {/* 로고 */}
+          <Link to="/" className="navbar-logo" onClick={closeAll}>
+            🎵 Harmonia
+          </Link>
 
-        {/* 모바일 햄버거 */}
-        <button className="navbar-toggle" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? '✕' : '☰'}
-        </button>
-      </div>
+          {/* 데스크톱 중앙 메뉴 */}
+          <ul className="desktop-menu desktop-menu-center">
+            {NAV_ITEMS.map((item) => (
+              <li
+                key={item.label}
+                className={`nav-item ${activeMenu === item.label ? 'nav-active' : ''}`}
+                onMouseEnter={() => setActiveMenu(item.label)}
+              >
+                <span className="nav-link">{item.label}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* 데스크톱 우측 메뉴 */}
+          <ul className="desktop-menu desktop-menu-right">
+            {RIGHT_ITEMS.map((item) => (
+              <li key={item.label} className="nav-item" onMouseEnter={() => setActiveMenu(null)}>
+                <Link to={item.href} className="nav-link nav-highlight" onClick={closeAll}>
+                  🎸 {item.label}
+                </Link>
+              </li>
+            ))}
+            <li onMouseEnter={() => setActiveMenu(null)}>
+              <Link to="/#join" className="navbar-cta" onClick={closeAll}>
+                멤버 신청
+              </Link>
+            </li>
+          </ul>
+
+          {/* 모바일 햄버거 */}
+          <button className="navbar-toggle" onClick={() => setMobileOpen(!mobileOpen)}>
+            {mobileOpen ? '✕' : '☰'}
+          </button>
+        </div>
+
+        {/* 메가 메뉴 패널 */}
+        <div className={`mega-menu ${megaOpen ? 'mega-open' : ''}`}>
+          <div className="mega-menu-inner">
+            {dropdownItems.map((item) => (
+              <div
+                key={item.label}
+                className={`mega-column ${activeMenu === item.label ? 'mega-column-active' : ''}`}
+              >
+                <p className="mega-column-title">{item.label}</p>
+                <ul className="mega-column-list">
+                  {item.dropdown.map((sub) => (
+                    <li key={sub.label}>
+                      <Link
+                        to={sub.href}
+                        className="mega-link"
+                        onClick={closeAll}
+                      >
+                        {sub.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </nav>
 
       {/* 모바일 메뉴 */}
       {mobileOpen && (
         <div className="mobile-menu">
           {NAV_ITEMS.map((item) => (
             <div key={item.label} className="mobile-item">
-              {item.dropdown ? (
-                <>
-                  <button
-                    className="mobile-trigger"
-                    onClick={() =>
-                      setMobileExpanded(mobileExpanded === item.label ? null : item.label)
-                    }
-                  >
-                    {item.label}
-                    <span className={`mobile-arrow ${mobileExpanded === item.label ? 'up' : ''}`}>▾</span>
-                  </button>
-                  {mobileExpanded === item.label && (
-                    <ul className="mobile-dropdown">
-                      {item.dropdown.map((sub) => (
-                        <li key={sub.label}>
-                          <Link to={sub.href} className="mobile-sub-link" onClick={close}>
-                            {sub.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </>
-              ) : (
-                <Link
-                  to={item.href}
-                  className={`mobile-link ${item.highlight ? 'mobile-highlight' : ''}`}
-                  onClick={close}
-                >
-                  {item.highlight && '🎸 '}{item.label}
-                </Link>
+              <button
+                className="mobile-trigger"
+                onClick={() =>
+                  setMobileExpanded(mobileExpanded === item.label ? null : item.label)
+                }
+              >
+                {item.label}
+                <span className={`mobile-arrow ${mobileExpanded === item.label ? 'up' : ''}`}>▾</span>
+              </button>
+              {mobileExpanded === item.label && (
+                <ul className="mobile-dropdown">
+                  {item.dropdown.map((sub) => (
+                    <li key={sub.label}>
+                      <Link to={sub.href} className="mobile-sub-link" onClick={closeAll}>
+                        {sub.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               )}
             </div>
           ))}
+          {RIGHT_ITEMS.map((item) => (
+            <div key={item.label} className="mobile-item">
+              <Link to={item.href} className="mobile-link mobile-highlight" onClick={closeAll}>
+                🎸 {item.label}
+              </Link>
+            </div>
+          ))}
           <div className="mobile-item">
-            <Link to="/#join" className="mobile-cta" onClick={close}>
+            <Link to="/#join" className="mobile-cta" onClick={closeAll}>
               멤버 신청
             </Link>
           </div>
         </div>
       )}
-    </nav>
+    </>
   );
 }
 
