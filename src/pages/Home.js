@@ -7,7 +7,7 @@ function Home() {
           음악을 사랑하는<br />모든 이들을 위한 공간
         </h1>
         <p className="hero-desc">
-          Harmonia는 뮤지션들이 모이고, 연습하고, 무대에 서는<br />
+          음진인은 뮤지션들이 모이고, 연습하고, 무대에 서는<br />
           커뮤니티 기반 음악 법인입니다.
         </p>
         <div className="hero-actions">

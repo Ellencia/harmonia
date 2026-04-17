@@ -605,6 +605,142 @@ a { text-decoration: none; color: inherit; }
   .resv-room-action { width: 100%; }
 }
 
+/* ===== Reservation Detail ===== */
+.resv-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  margin-bottom: 32px;
+  display: inline-block;
+}
+
+.resv-detail-header { text-align: center; margin-bottom: 40px; }
+
+.resv-cap-badge {
+  display: inline-block;
+  background: #ede9fe;
+  color: #7c3aed;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin-right: 6px;
+}
+
+.resv-form-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 40px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.resv-form-section { margin-bottom: 32px; }
+
+.resv-form-label {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #1f2937;
+}
+
+.resv-date-input {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  width: 220px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.resv-date-input:focus { outline: none; border-color: #7c3aed; }
+
+.resv-time-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.resv-time-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.resv-time-header .resv-form-label { margin-bottom: 0; }
+
+.resv-time-summary { font-size: 0.92rem; }
+.resv-time-result { color: #7c3aed; font-weight: 600; }
+.resv-time-hint-inline { color: #9ca3af; }
+
+.resv-time-grid.disabled { opacity: 0.4; pointer-events: none; }
+
+.resv-time-slot {
+  padding: 10px 0;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  color: #374151;
+}
+.resv-time-slot:hover:not(:disabled) { border-color: #7c3aed; color: #7c3aed; }
+.resv-time-slot.slot-start { background: #7c3aed; border-color: #7c3aed; color: #fff; border-radius: 8px 8px 8px 8px; }
+.resv-time-slot.slot-end   { background: #7c3aed; border-color: #7c3aed; color: #fff; }
+.resv-time-slot.slot-in-range { background: #ede9fe; border-color: #c4b5fd; color: #6d28d9; }
+.resv-time-slot:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.resv-fields { display: flex; flex-direction: column; gap: 12px; }
+
+.resv-input {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.resv-input:focus { outline: none; border-color: #7c3aed; }
+
+.resv-submit-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.05rem;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+.resv-submit-btn.disabled { opacity: 0.45; cursor: not-allowed; }
+
+.resv-hint {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  margin-top: 8px;
+}
+.resv-hint.center { text-align: center; }
+
+.resv-select-btn { padding: 12px 28px; }
+
+.resv-submitted {
+  text-align: center;
+  padding: 80px 24px;
+}
+.resv-submitted-icon { font-size: 3rem; margin-bottom: 20px; }
+.resv-submitted h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 16px; }
+.resv-submitted p { color: #6b7280; line-height: 1.8; margin-bottom: 32px; }
+
+@media (max-width: 640px) {
+  .resv-time-grid { grid-template-columns: repeat(5, 1fr); }
+  .resv-form-card { padding: 24px 16px; }
+  .resv-duration-row { flex-wrap: wrap; }
+}
+
 /* ===== Footer ===== */
 .footer { background: #1e1b4b; color: #a5b4fc; padding: 48px 24px; }
 

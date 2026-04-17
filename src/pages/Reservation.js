@@ -8,7 +8,6 @@ function Reservation() {
     <section className="reservation-page">
       <div className="section-container">
 
-        {/* 헤더 */}
         <div className="resv-header">
           <Link to="/" className="back-link">← 홈으로</Link>
           <h1 className="section-title">연습실 예약</h1>
@@ -18,7 +17,6 @@ function Reservation() {
           </p>
         </div>
 
-        {/* 공간 카드 목록 */}
         <div className="resv-rooms">
           {rehearsalRooms.map((room) => (
             <div className="resv-room-card" key={room.id}>
@@ -33,17 +31,17 @@ function Reservation() {
                 </div>
               </div>
               <div className="resv-room-action">
-                <span className="resv-coming-badge">예약 기능 준비 중</span>
-                <p className="resv-coming-desc">
-                  무인 예약 시스템을 구축 중입니다.<br />
-                  곧 이 공간을 직접 예약할 수 있어요.
-                </p>
+                <Link
+                  to={`/reservation/${room.id}`}
+                  className="btn btn-primary resv-select-btn"
+                >
+                  예약하기
+                </Link>
               </div>
             </div>
           ))}
         </div>
 
-        {/* 안내 배너 */}
         <div className="resv-notice">
           <span className="resv-notice-icon">🔧</span>
           <div>

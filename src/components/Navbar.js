@@ -64,7 +64,7 @@ function Navbar() {
 
           {/* 로고 */}
           <Link to="/" className="navbar-logo" onClick={closeAll}>
-            🎵 Harmonia
+            🎵 음진인
           </Link>
 
           {/* 데스크톱 중앙 메뉴 */}

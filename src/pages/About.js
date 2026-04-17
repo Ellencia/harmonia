@@ -20,7 +20,7 @@ function About() {
   return (
     <section className="about" id="about">
       <div className="section-container">
-        <h2 className="section-title">Harmonia 소개</h2>
+        <h2 className="section-title">음진인 소개</h2>
         <p className="section-sub">
           저희는 뮤지션들이 더 쉽게 음악을 즐길 수 있도록,<br />
           공간과 커뮤니티를 제공하는 음악 법인입니다.

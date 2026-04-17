@@ -22,7 +22,7 @@ function Join() {
         <div className="section-container join-success">
           <span className="success-icon">🎉</span>
           <h2>신청이 완료됐어요!</h2>
-          <p>{form.name}님, Harmonia 가족이 되신 것을 환영합니다.<br />곧 이메일로 안내드릴게요.</p>
+          <p>{form.name}님, 음진인 가족이 되신 것을 환영합니다.<br />곧 이메일로 안내드릴게요.</p>
           <button className="btn btn-primary" onClick={() => setSubmitted(false)}>
             돌아가기
           </button>

@@ -6,6 +6,7 @@ import About from './pages/About';
 import Spaces from './pages/Spaces';
 import Join from './pages/Join';
 import Reservation from './pages/Reservation';
+import ReservationDetail from './pages/ReservationDetail';
 import './App.css';
 
 function MainLayout() {
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainLayout />} />
             <Route path="/reservation" element={<Reservation />} />
+            <Route path="/reservation/:roomId" element={<ReservationDetail />} />
           </Routes>
         </main>
         <Footer />
