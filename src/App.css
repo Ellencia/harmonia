@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'JSArirang';
+  src: url('./fonts/JSArirang.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* ===== Reset & Base ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -772,9 +779,9 @@ main { padding-top: 64px; }
 }
 
 .splash-logo {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 7rem;
+  font-family: 'Noto Serif TC', serif;
   font-weight: 900;
+  font-size: 15vw;
   line-height: 1;
   letter-spacing: 0.05em;
   user-select: none;
@@ -804,6 +811,18 @@ main { padding-top: 64px; }
 .splash-percent {
   font-size: 0.82rem;
   color: rgba(165, 180, 252, 0.6);
+}
+
+@media (max-width: 640px) {
+  .splash-logo {
+    writing-mode: vertical-rl;
+    font-size: 26vh;
+    letter-spacing: 0.12em;
+  }
+
+  .splash-text-wrapper {
+    margin-bottom: 36px;
+  }
 }
 
 /* ===== Footer ===== */
