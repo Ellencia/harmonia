@@ -11,5 +11,18 @@
     "phone": "010-9947-6929",
     "intro": "섹스",
     "createdAt": "2026-04-21T07:19:22.384Z"
+  },
+  {
+    "id": 1776756112898,
+    "name": "김호진",
+    "email": "ellenciakim@naver.com",
+    "band": "매버릭",
+    "role": "드럼",
+    "location": "역삼",
+    "birth": "1994-10-25",
+    "genre": "록",
+    "phone": "010-8209-6929",
+    "intro": "asdf",
+    "createdAt": "2026-04-21T07:21:52.898Z"
   }
 ]
