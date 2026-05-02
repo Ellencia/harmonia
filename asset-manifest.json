@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/eumjinin/static/css/main.93a249a4.css",
-    "main.js": "/eumjinin/static/js/main.45af5fdf.js",
+    "main.js": "/eumjinin/static/js/main.dd07f257.js",
     "static/js/453.60d6249d.chunk.js": "/eumjinin/static/js/453.60d6249d.chunk.js",
     "static/media/JSArirang.ttf": "/eumjinin/static/media/JSArirang.6330c914d757e01a9535.ttf",
     "static/media/hallk5.webp": "/eumjinin/static/media/hallk5.e1af4aa1b62975c081b8.webp",
@@ -15,11 +15,11 @@
     "static/media/Logo1.png": "/eumjinin/static/media/Logo1.9cc553650a1f8239cef2.png",
     "index.html": "/eumjinin/index.html",
     "main.93a249a4.css.map": "/eumjinin/static/css/main.93a249a4.css.map",
-    "main.45af5fdf.js.map": "/eumjinin/static/js/main.45af5fdf.js.map",
+    "main.dd07f257.js.map": "/eumjinin/static/js/main.dd07f257.js.map",
     "453.60d6249d.chunk.js.map": "/eumjinin/static/js/453.60d6249d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.93a249a4.css",
-    "static/js/main.45af5fdf.js"
+    "static/js/main.dd07f257.js"
   ]
 }
